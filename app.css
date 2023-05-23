@@ -80,15 +80,30 @@ h3 {
 	margin-bottom: 0.2rem;
 }
 
-.list {
+#list {
 	list-style-type: none;
 	width: 100%;
 }
-.list li {
+#list {
+	padding-left: 0;
+}
+#list li {
 	background-color: var(--background-color);
+	padding-left: 0;
+	display: flex;
+	justify-content: space-between;
+}
+.minus,
+.plus {
+	padding: 5px;
 	width: 100%;
 }
-
+.minus {
+	border-right: 3px solid #c0392b;
+}
+.plus {
+	border-right: 3px solid #2ecc71;
+}
 .form {
 	width: 100%;
 }
@@ -120,4 +135,7 @@ label {
 }
 label[for='amount'] {
 	padding-bottom: 35px;
+}
+#history {
+	margin-bottom: 0;
 }
