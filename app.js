@@ -14,7 +14,25 @@ const btn = document.querySelector('.btn');
 const reason = document.getElementById('name');
 
 const amount = document.getElementById('amount');
-console.log(list);
+const saveDataToLocalStorage = () => {
+	localStorage.setItem('balance', balance.toString());
+	localStorage.setItem('money_plus', money_plus.toString());
+	localStorage.setItem('money_minus', money_minus.toString());
+};
+const getDataFromLocalStorage = () => {
+	const savedBalance = localStorage.getItem('balance');
+	const savedMoneyPlus = localStorage.getItem('money_plus');
+	const savedMoneyMinus = localStorage.getItem('money_minus');
+
+	balance = savedBalance ? parseInt(savedBalance) : 0;
+	money_plus = savedMoneyPlus ? parseInt(savedMoneyPlus) : 0;
+	money_minus = savedMoneyMinus ? parseInt(savedMoneyMinus) : 0;
+};
+const updateElements = () => {
+	balanceEl.innerHTML = `$${balance}`;
+	money_plusEl.innerHTML = `$${money_plus}`;
+	money_minusEl.innerHTML = `$${money_minus}`;
+};
 const addTransaction = (e) => {
 	e.preventDefault();
 	balanceEl.innerHTML = '';
@@ -38,6 +56,15 @@ const addTransaction = (e) => {
 
 	console.log(money_minus);
 	balanceEl.innerHTML = `$${balance}`;
+	saveDataToLocalStorage();
+	updateElements();
 	form.reset();
 };
 form.addEventListener('submit', addTransaction);
+window.addEventListener('DOMContentLoaded', () => {
+	// Retrieve the saved values from local storage
+	getDataFromLocalStorage();
+
+	// Update the elements with the retrieved values
+	updateElements();
+});
